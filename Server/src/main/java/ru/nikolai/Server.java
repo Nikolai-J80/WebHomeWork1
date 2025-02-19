@@ -2,6 +2,7 @@ package ru.nikolai;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,6 +14,9 @@ public class Server {
     final ExecutorService threadPool = Executors.newFixedThreadPool(SIZE);
     public ConcurrentHashMap<String, ConcurrentHashMap<String, Handler>> handlers = new ConcurrentHashMap<>();
 
+    public static List<String> validPaths = List.of("/index.html", "/spring.svg",
+            "/spring.png", "/resources.html", "/styles.css", "/app.js",
+            "/links.html", "/forms.html", "/classic.html", "/events.html", "/events.js");
     public void start() {
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
